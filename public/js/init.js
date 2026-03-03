@@ -46,19 +46,24 @@ $(document).ready(function () {
 
             // Function to create role div
             let count = 0;
-            function createRoleDiv(role, accesses) {
-                
+            function createRoleDiv(role, accesses, showRoleName = true) {
+
                 const roleDiv = $('<div>').addClass("role-div");
-                
-                // Create role title
-                const roleTitle = $('<div>').addClass('role-title');
-                
-                // Create role value
-                let targetclass = 'role-value';
-                if(count>0)
-                    targetclass = 'role-value2';
-                const roleValue = $('<div>').addClass(targetclass).text(role);
-                
+
+                // Only show role name if specified
+                if (showRoleName) {
+                    // Create role title
+                    const roleTitle = $('<div>').addClass('role-title');
+
+                    // Create role value
+                    let targetclass = 'role-value';
+                    if(count>0)
+                        targetclass = 'role-value2';
+                    const roleValue = $('<div>').addClass(targetclass).text(role);
+
+                    roleDiv.append(roleTitle, roleValue);
+                }
+
                 let targetclass2 = 'access-container';
                 if(count>0)
                     targetclass2 = 'access-container2';
@@ -66,25 +71,60 @@ $(document).ready(function () {
                 const accessContainer = $('<div>').addClass(targetclass2);
                 const accessTitle = $('<div>').addClass('access-title').text('Access Permissions:');
                 const accessList = $('<div>').addClass('access-list');
-                
+
                 // Add access items
                 accesses.forEach(function(access) {
                     const accessItem = $('<span>').addClass('access-item').text(access);
                     accessList.append(accessItem);
                 });
-                
+
                 // Assemble the structure
                 accessContainer.append(accessTitle, accessList);
-                roleDiv.append(roleTitle, roleValue, accessContainer);
-                
+                roleDiv.append(accessContainer);
+
                 return roleDiv;
             }
 
-            // Generate role divs
+            // Track which columns have content
+            let hasSoftwareDev = false;
+            let hasDevOps = false;
+
+            // Generate role divs and distribute to columns
             entitlements["role"].forEach(function(role) {
                 const accesses = roleAccesses[role] || [];
-                const roleDiv = createRoleDiv(role, accesses);
-                $('#roleContainer').append(roleDiv);
+                const roleLower = role.toLowerCase();
+
+                // Determine which column to append to and whether to show role name
+                let showRoleName = true;
+
+                if (roleLower.includes('devops') || roleLower.includes('operations')) {
+                    // Hide role name if it matches the column category
+                    showRoleName = false;
+                    const roleDiv = createRoleDiv(role, accesses, showRoleName);
+                    $('#devOpsContainer').append(roleDiv);
+                    hasDevOps = true;
+                } else if (roleLower.includes('software') || (roleLower.includes('dev') && !roleLower.includes('ops'))) {
+                    // Hide role name if it matches the column category
+                    showRoleName = false;
+                    const roleDiv = createRoleDiv(role, accesses, showRoleName);
+                    $('#softwareDevContainer').append(roleDiv);
+                    hasSoftwareDev = true;
+                } else {
+                    // Show role name for other roles
+                    const roleDiv = createRoleDiv(role, accesses, showRoleName);
+                    $('#softwareDevContainer').append(roleDiv);
+                }
                 count++;
             });
+
+            // Show "no access" message for empty columns
+            if (!hasSoftwareDev) {
+                const noAccessDiv = $('<div>').addClass('no-access-message').text('No access granted');
+                $('#softwareDevContainer').append(noAccessDiv);
+            }
+
+            if (!hasDevOps) {
+                const noAccessDiv = $('<div>').addClass('no-access-message').text('No access granted');
+                $('#devOpsContainer').append(noAccessDiv);
+            }
 });

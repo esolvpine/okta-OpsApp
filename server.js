@@ -34,7 +34,7 @@ app.use(express.static('public'));
 const samlConfig = {
     entryPoint: process.env.OKTA_ENTRYPOINT, // From Okta metadata
     issuer: process.env.OKTA_ISSUER, // From Okta metadata
-    callbackUrl: "https://samlvalidator.esolv.ca/login/callback", // Updated to match your route
+    callbackUrl: process.env.OKTA_ISSUER, // Updated to match your route
     cert: fs.readFileSync(__dirname + "/saml.pem", "utf8"), // Load Okta cert
 };
 
@@ -62,9 +62,11 @@ app.get('/auth/saml', passport.authenticate('saml', { failureRedirect: '/' }));
 app.post('/login/callback',
     passport.authenticate('saml', { failureRedirect: '/' }),
     (req, res) => {
-      //  console.log("SAML Callback:", req.user);
+        console.log("=== SAML Callback - Full User Object ===");
+        console.log(JSON.stringify(req.user, null, 2));
+
         if (!req.user) return res.redirect('/auth/saml');
-        
+
         // Format user data for display
         const userData = {};
         const userEntitlements = {};
@@ -72,8 +74,17 @@ app.post('/login/callback',
         userData.email = req.user.nameID;
         userData.firstName = req.user.firstName;
         userData.lastName = req.user.lastName;
-        
-        const skipAttributes = process.env.SKIP_ATTRIBUTES.split(',');
+
+        const skipAttributes = process.env.SKIP_ATTRIBUTES ? process.env.SKIP_ATTRIBUTES.split(',') : [];
+
+        console.log("=== Checking for Role & Access Attributes ===");
+        if (req.user.attributes) {
+            Object.keys(req.user.attributes).forEach(key => {
+                if (key.toLowerCase().includes('role') || key.toLowerCase().includes('access')) {
+                    console.log(`${key}:`, req.user.attributes[key]);
+                }
+            });
+        }
         
         // Process attributes
         if (req.user.attributes) {

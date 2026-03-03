@@ -112,15 +112,13 @@ apptitle{
 }
 
 .role-div {
-    flex: 0 0 42%;
-    max-width: 42%;
+    width: 100%;
     box-sizing: border-box;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 20px;
 }
 
 
@@ -185,4 +183,50 @@ apptitle{
     border-radius: 12px;
     font-size: 12px;
     text-transform: capitalize;
+}
+
+.columns-wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+.column {
+    flex: 1;
+    min-width: 0;
+}
+
+.column-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #007bff;
+    text-align: center;
+}
+
+.column:has(#devOpsContainer) .column-title {
+    border-bottom-color: #d97706;
+}
+
+.role-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#devOpsContainer .access-item {
+    background-color: #d97706;
+}
+
+.no-access-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
 }
