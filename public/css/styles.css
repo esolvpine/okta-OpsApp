@@ -1,0 +1,188 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container{
+    padding:50px;
+}
+#user_info{
+    font-size: 1.2em;
+    position:absolute;
+    right:70px
+}
+apptitle{
+    font-size: 1.8em;
+    padding:0 20px;
+    float:left
+}
+        .app-header {
+            display: flex;
+            align-items: center;
+            background-color:#e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 50px 50px 0 50px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+.logout-btn {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #ff4d4d; /* Red background */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+.entitlement-key-wrapper{
+    float: left;
+    padding:  10px;
+    border:  1px solid #c6c6c6;
+    margin:  10px;
+    border-radius:  10px;
+    width: 300px;
+}
+
+.entitlement-group{
+    width: 300px;
+    text-align: left;
+    font-weight: bolder;
+    color: chocolate;
+    font-size: 1.5em;
+    padding: 0 5px 20px 5px;
+}
+
+.entitlement-item{
+    float: left;
+    margin:  5px;
+    border-radius:  5px;
+    
+    padding:  0 20px;
+    font-weight: bolder;   
+    
+    height:40px;
+    line-height: 10px;
+}
+
+.entitlement-item.var1{
+ 
+    border: 2px solid #065333;
+    background:#8fe9c4;
+}
+
+.entitlement-item.var2{
+     border: 2px solid #249bd5;
+    background: #a9d6f1;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 50px;
+}
+
+#roleContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0; /* Remove gap to ensure full 50% width */
+    width: 100%;
+    margin-top: 30px;
+}
+
+.role-div {
+    flex: 0 0 42%;
+    max-width: 42%;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px;
+}
+
+
+
+.role-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+.role-value {
+    background-color: #e9ecef;
+    margin:20px;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.role-value2 {
+    background-color: #424242;
+    margin:20px;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color:#fff;
+}
+.access-container {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 4px solid #28a745;
+}
+.access-container2 {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 4px solid #eea508;
+}
+.access-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+.access-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.access-item {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    text-transform: capitalize;
+}

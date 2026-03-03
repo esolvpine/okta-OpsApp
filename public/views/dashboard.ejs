@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div style="height:50px">
+         <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+    <div class="app-header">
+       
+            <svg class="app-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background circle -->
+            <circle cx="32" cy="32" r="30" fill="#007bff" stroke="#0056b3" stroke-width="2"/>
+            
+            <!-- Shopping cart icon -->
+            <g transform="translate(8, 12)">
+                <!-- Cart body -->
+                <rect x="6" y="12" width="24" height="16" rx="2" fill="white" stroke="white" stroke-width="1"/>
+                
+                <!-- Cart handle -->
+                <path d="M4 8 L8 8 L10 20 L28 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+                
+                <!-- Cart wheels -->
+                <circle cx="12" cy="32" r="2" fill="white"/>
+                <circle cx="24" cy="32" r="2" fill="white"/>
+                
+                <!-- Dollar sign -->
+                <text x="18" y="22" fill="#007bff" font-size="8" font-weight="bold" text-anchor="middle">$</text>
+            </g>
+            
+            <!-- Credit card/payment icon -->
+            <g transform="translate(32, 20)">
+                <!-- Card -->
+                <rect x="0" y="0" width="20" height="12" rx="2" fill="white" stroke="white" stroke-width="1"/>
+                
+                <!-- Card stripe -->
+                <rect x="0" y="3" width="20" height="2" fill="#28a745"/>
+                
+                <!-- Card chip -->
+                <rect x="2" y="7" width="3" height="2" fill="#ffc107"/>
+            </g>
+        </svg>
+            <apptitle>Système de gestion des achats et des comptes fournisseurs<br/>Purchase & Payable Management System</apptitle>
+            <div id="user_info"></div>
+           
+        </div>
+
+        <div class="container" id="roleContainer">
+        <!-- Roles will be generated here by jQuery -->
+    </div>
+       
+   
+
+    <script>
+        // Pass JSON data to JavaScript
+        let user = <%- JSON.stringify(user) %>;
+        let entitlements = <%- JSON.stringify(entitlements) %>;
+
+    </script>
+    <script src="/js/init.js"></script>
+</body>
+</html>
